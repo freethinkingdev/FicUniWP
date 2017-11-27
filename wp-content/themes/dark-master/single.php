@@ -15,7 +15,7 @@ while (have_posts()) {
     <h1><?php the_title() ?></h1>
     <p><?php the_content() ?></p>
 
-    <a href="http://localhost/dashboard/FicUni/">Back</a>
+    <a href="<?php echo site_url(); ?>">Back</a>
     <?php
 }
 
