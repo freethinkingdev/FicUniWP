@@ -28,23 +28,33 @@ wp_footer();
                 <div class="site-footer__col-two">
                     <h3 class="headline headline--small">Explore</h3>
                     <nav class="nav-list">
-                        <ul>
-                            <li><a href="<?php echo site_url('about-us'); ?>">About Us</a></li>
-                            <li><a href="<?php echo site_url('programs'); ?>">Programs</a></li>
-                            <li><a href="<?php echo site_url('events'); ?>">Events</a></li>
-                            <li><a href="<?php echo site_url('campuses'); ?>">Campuses</a></li>
-                        </ul>
+                        <?php
+                            wp_nav_menu(array(
+                                'theme_location' => 'menu_footer_left'
+                            ));
+                        ?>
+                        <!--<ul>
+                            <li><a href="<?php /*echo site_url('about-us'); */?>">About Us</a></li>
+                            <li><a href="<?php /*echo site_url('programs'); */?>">Programs</a></li>
+                            <li><a href="<?php /*echo site_url('events'); */?>">Events</a></li>
+                            <li><a href="<?php /*echo site_url('campuses'); */?>">Campuses</a></li>
+                        </ul>-->
                     </nav>
                 </div>
 
                 <div class="site-footer__col-three">
                     <h3 class="headline headline--small">Learn</h3>
                     <nav class="nav-list">
-                        <ul>
+                        <?php
+                            wp_nav_menu(array(
+                                'theme_location' => 'menu_footer_right'
+                            ));
+                        ?>
+                        <!--<ul>
                             <li><a href="#">Legal</a></li>
-                            <li><a href="<?php echo site_url('privacy-policy'); ?>">Privacy</a></li>
+                            <li><a href="<?php /*echo site_url('privacy-policy'); */?>">Privacy</a></li>
                             <li><a href="#">Careers</a></li>
-                        </ul>
+                        </ul>-->
                     </nav>
                 </div>
             </div>

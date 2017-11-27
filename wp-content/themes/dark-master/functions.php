@@ -20,4 +20,7 @@ function uni_files() {
 
 function uni_features() {
     add_theme_support('title-tag');
+    register_nav_menu('menu_header', 'Header menu location');
+    register_nav_menu('menu_footer_left', 'Footer left menu location');
+    register_nav_menu('menu_footer_right', 'Footer right menu location');
 }
