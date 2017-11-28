@@ -50,11 +50,7 @@ get_header();
                         </div>
                     </div>
 
-                    <?php
-
-                }
-
-                ?>
+                    <?php } ?>
 
 
                 <p class="t-center no-margin"><a href="<?php echo site_url('event'); ?>" class="btn btn--blue">View All Events</a></p>
@@ -88,7 +84,6 @@ get_header();
                     </div>
 
                 <?php }
-
                 wp_reset_postdata();
                 ?>
 
