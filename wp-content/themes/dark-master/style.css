@@ -624,10 +624,10 @@ img {
 
 a {
     color: #0D3B66;
+    text-decoration: none;
 }
 
 a:hover {
-    text-decoration: none;
 }
 
 p, ul, ol {
