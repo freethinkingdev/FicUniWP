@@ -29,9 +29,19 @@ get_header();
 
                 <?php
                 /* FUTURE EVENTS SECTION*/
+                $day_today = date('Ymd');
                 $events_for_the_home_page = new WP_Query(array(
-                    'posts_per_page' => 2,
-                    'post_type' => 'event'
+                    'posts_per_page' => -1,
+                    'post_type' => 'event',
+                    'meta_key' => 'event_date',
+                    'orderby' => 'meta_value_num',
+                    'order' => 'ASC',
+                    'meta_query' => array(
+                        'key' => 'event_date',
+                        'compare' =>'>=',
+                        'value' => $day_today,
+                        'type' => 'numeric'
+                     )
                 ));
 
                 while ($events_for_the_home_page->have_posts()) {
