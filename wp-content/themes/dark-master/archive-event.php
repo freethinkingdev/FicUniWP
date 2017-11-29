@@ -34,13 +34,14 @@ get_header();
 
         while ($events_for_the_home_page->have_posts()) {
             $events_for_the_home_page->the_post();
-
+            $event_future_date_raw = get_field('event_date');
+            $event_future_date = new DateTime($event_future_date_raw);
             ?>
             <div class="generic-content">
             <div class="event-summary">
                 <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-                    <span class="event-summary__month"><?php the_time('M'); ?></span>
-                    <span class="event-summary__day"><?php the_time('d'); ?></span>
+                    <span class="event-summary__month"><?php echo $event_future_date->format('M'); ?></span>
+                    <span class="event-summary__day"><?php echo $event_future_date->format('d'); ?></span>
                 </a>
                 <div class="event-summary__content">
                     <h5 class="event-summary__title headline headline--tiny"><a
