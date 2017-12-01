@@ -119,7 +119,7 @@ get_header();
                             while ($program_related_professors->have_posts()) {
                                 $program_related_professors->the_post();
                                 ?>
-                                    <li><a href="<?php echo the_permalink(); ?>"> <?php the_title(); ?></a></li>
+                                    <li><a href="<?php echo the_permalink(); ?>"> <?php the_post_thumbnail(); the_title(); ?></a></li>
                                 <?php }} ?>
                                 </ul>
                         </div>

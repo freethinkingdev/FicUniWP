@@ -27,7 +27,15 @@ get_header();
                     the_post();
                     ?>
                     <div class="post-item">
-                        <p><?php the_content(); ?></p>
+                        <div class="row group">
+                            <div class="one-third">
+                                <?php the_post_thumbnail();?>
+                            </div>
+
+                            <div class="two-thirds">
+                                <?php the_content(); ?>
+                            </div>
+                        </div>
                         <div>
 
                             <?php
@@ -35,7 +43,7 @@ get_header();
                             /* FUTURE EVENTS SECTION*/
                             $day_today = date('Ymd');
                             $related_programs_to_professors = get_field('related_programs');
-
+                            /*If there are any related programs*/
                             if ($related_programs_to_professors) { ?>
                                 <p>
                                     <h5>
