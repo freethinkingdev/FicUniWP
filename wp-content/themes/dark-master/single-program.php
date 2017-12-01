@@ -21,7 +21,7 @@ get_header();
 
     <div class="container container--narrow page-section">
 	    <div class="metabox metabox--position-up metabox--with-home-link">
-		    <p><a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link('program'); ?>"><i class="fa fa-home" aria-hidden="true"></i> All programs</a> 
+		    <p><a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link('program'); ?>"><i class="fa fa-home" aria-hidden="true"></i> All programs</a>
                 <span class="metabox__main"><?php the_title(); ?></span></p>
 	    </div>
             <div class="generic-content">
@@ -32,13 +32,11 @@ get_header();
                     <div class="post-item">
                         <p><?php the_content(); ?></p>
                         <div>
-
                             <?php
-
                             /* FUTURE EVENTS SECTION*/
                             $day_today = date('Ymd');
                             $events_for_the_programs = new WP_Query(array(
-                                'posts_per_page' => 2,
+                                'posts_per_page' => 3,
                                 'post_type' => 'event',
                                 'meta_key' => 'event_date',
                                 'orderby' => 'meta_value_num',
@@ -55,7 +53,9 @@ get_header();
                                     'value' => '"'.get_the_ID().'"'
                                 ))
                             ));
-
+                            /*
+                             * RELATED EVENTS SECTION
+                             * */
                             if ($events_for_the_programs->have_posts()) { ?>
                                 <p>
                                     <h5>
@@ -85,7 +85,43 @@ get_header();
                                         </div>
                                     </div>
                                 <?php } ?>
-                            <?php } ?>
+                            <?php }
+                            ?>
+                            <!--
+                                RELATED PROFESSOR SECTION
+                            -->
+                            <?php
+                            wp_reset_postdata();
+                            $program_related_professors = new WP_Query(array(
+                                'posts_per_page' => -1,
+                                'post_type' => 'professor',
+                                'orderby' => 'title',
+                                'order' => 'ASC',
+                                'meta_query' => array(
+                                    array(
+                                        'key' => 'related_programs',
+                                        'compare' => 'LIKE',
+                                        'value' => '"'.get_the_ID().'"'
+                                    )
+
+                                )
+                            ));
+
+                            ?>
+                            <h5>
+                                <strong>
+                                    Related <?php the_title(); ?> professors:
+                                </strong>
+                                <hr>
+                            </h5>
+                            <ul class="link-list min-list">
+                            <?php
+                            while ($program_related_professors->have_posts()) {
+                                $program_related_professors->the_post();
+                                ?>
+                                    <li><a href="<?php echo the_permalink(); ?>"> <?php the_title(); ?></a></li>
+                                <?php } ?>
+                                </ul>
                         </div>
                     </div>
                     <?php } ?>
