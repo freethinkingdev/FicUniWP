@@ -106,7 +106,7 @@ get_header();
 
                                 )
                             ));
-
+                                if ($program_related_professors->have_posts()){
                             ?>
                             <h5>
                                 <strong>
@@ -120,7 +120,7 @@ get_header();
                                 $program_related_professors->the_post();
                                 ?>
                                     <li><a href="<?php echo the_permalink(); ?>"> <?php the_title(); ?></a></li>
-                                <?php } ?>
+                                <?php }} ?>
                                 </ul>
                         </div>
                     </div>
