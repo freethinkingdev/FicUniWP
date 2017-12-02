@@ -29,7 +29,7 @@ get_header();
                     <div class="post-item">
                         <div class="row group">
                             <div class="one-third">
-                                <?php the_post_thumbnail();?>
+                                <?php the_post_thumbnail('professor_landscape');?>
                             </div>
 
                             <div class="two-thirds">

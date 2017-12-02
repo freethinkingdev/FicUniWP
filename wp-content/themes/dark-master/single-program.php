@@ -114,12 +114,12 @@ get_header();
                                 </strong>
                                 <hr>
                             </h5>
-                            <ul class="link-list min-list">
+                            <ul>
                             <?php
                             while ($program_related_professors->have_posts()) {
                                 $program_related_professors->the_post();
                                 ?>
-                                    <li><a href="<?php echo the_permalink(); ?>"> <?php the_post_thumbnail(); the_title(); ?></a></li>
+                                    <li><div><div class="prof_related"><a href="<?php echo the_permalink(); ?>"><div class="prof_image"> <?php the_post_thumbnail('professor_portrait');?></div><div class="prof_name"><?php the_title(); ?></div></div></div></a></li>
                                 <?php }} ?>
                                 </ul>
                         </div>

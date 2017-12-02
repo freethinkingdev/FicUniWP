@@ -623,8 +623,9 @@ img {
 }
 
 a {
-    color: #0D3B66;
+    color: #ea2121;
     text-decoration: none;
+    font-weight: 300;
 }
 
 a:hover {
@@ -632,6 +633,11 @@ a:hover {
 
 p, ul, ol {
     margin: 0 0 1.65em 0;
+
+}
+
+ul {
+    list-style-type: none;
 }
 
 p, li {
@@ -2377,4 +2383,26 @@ body.admin-bar .search-overlay {
 .post-item:last-of-type {
     border-bottom: none;
     margin-bottom: 0;
+}
+
+
+.prof_related {
+    width: 20%;
+    margin: 10px;
+    padding: 5px;
+    float: left;
+}
+
+.prof_image {
+    position: relative;
+    z-index: -3;
+}
+
+.prof_name {
+    /* padding: 5px; */
+    margin-top: -38px;
+    color: white;
+    font-weight: 100;
+    background-color: #301ba982;
+    width: 160px;
 }
