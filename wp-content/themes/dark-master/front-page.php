@@ -18,7 +18,8 @@ get_header();
             <h2 class="headline headline--medium">We think you&rsquo;ll like it here.</h2>
             <h3 class="headline headline--small">Why don&rsquo;t you check out the <strong>major</strong> you&rsquo;re
                 interested in?</h3>
-            <a href="<?php echo get_post_type_archive_link('program'); ?>" class="btn btn--large btn--blue">Find Your Major</a>
+            <a href="<?php echo get_post_type_archive_link('program'); ?>" class="btn btn--large btn--blue">Find Your
+                Major</a>
         </div>
     </div>
 
@@ -38,34 +39,21 @@ get_header();
                     'order' => 'ASC',
                     'meta_query' => array(
                         'key' => 'event_date',
-                        'compare' =>'>=',
+                        'compare' => '>=',
                         'value' => $day_today,
                         'type' => 'numeric'
-                     )
+                    )
                 ));
 
                 while ($events_for_the_home_page->have_posts()) {
                     $events_for_the_home_page->the_post();
-                    $event_future_date_raw = get_field('event_date',false,false);
-                    $event_future_date = new DateTime($event_future_date_raw);
-                    ?>
-                    <div class="event-summary">
-                        <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-                            <span class="event-summary__month"><?php echo $event_future_date->format('M'); ?></span>
-                            <span class="event-summary__day"><?php echo $event_future_date->format('d'); ?></span>
-                        </a>
-                        <div class="event-summary__content">
-                            <h5 class="event-summary__title headline headline--tiny"><a
-                                    href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                            <p><?php if (has_excerpt()){ echo get_the_excerpt(); } else {echo wp_trim_words(get_the_content(), 20);}  ?>
-                                <a href="<?php the_permalink(); ?>" class="nu gray">Learn more &raquo;</a></p>
-                        </div>
-                    </div>
-
-                    <?php } ?>
+                    get_template_part('custom_templates/content','event_list');
+                }
+                ?>
 
 
-                <p class="t-center no-margin"><a href="<?php echo get_post_type_archive_link('event'); ?>" class="btn btn--blue">View All Events</a></p>
+                <p class="t-center no-margin"><a href="<?php echo get_post_type_archive_link('event'); ?>"
+                                                 class="btn btn--blue">View All Events</a></p>
 
             </div>
         </div>
@@ -91,8 +79,12 @@ get_header();
                         <div class="event-summary__content">
                             <h5 class="event-summary__title headline headline--tiny"><a
                                     href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                            <p><?php if (has_excerpt()){ echo get_the_excerpt();} else {echo wp_trim_words(get_the_content(), 20);} ?><a href="<?php the_permalink(); ?>"
-                                                                                     class="nu gray">Read more</a></p>
+                            <p><?php if (has_excerpt()) {
+                                    echo get_the_excerpt();
+                                } else {
+                                    echo wp_trim_words(get_the_content(), 20);
+                                } ?><a href="<?php the_permalink(); ?>"
+                                       class="nu gray">Read more</a></p>
                         </div>
                     </div>
 
