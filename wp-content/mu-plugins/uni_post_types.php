@@ -39,7 +39,7 @@ function uni_post_types(){
             'all_items' => 'All Campuses',
             'singular_name' => 'Campus'
         ),
-        'menu_icon' => 'dashicons-building',
+        'menu_icon' => 'dashicons-location-alt',
         'has_archive' => true,
         'supports' => array('title','editor'),
         'rewrite' => array('slug'=> 'campuses')
