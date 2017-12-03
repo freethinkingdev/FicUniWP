@@ -8,19 +8,8 @@
 
 
 get_header();
-
+add_page_banner_header(array('title'=>'What happened','image'=>'https://az616578.vo.msecnd.net/files/2017/01/15/636200560694747214-45315179_27.passe_.jpg'))
 ?>
-
-
-    <div class="page-banner" xmlns="http://www.w3.org/1999/html">
-        <div class="page-banner__bg-image"
-             style="background-image: url(<?php echo get_theme_file_uri() ?>/images/ocean.jpg);"></div>
-        <div class="page-banner__content container container--narrow">
-            <h1 class="page-banner__title">Past events</h1>
-            <div class="page-banner__intro">
-            </div>
-        </div>
-    </div>
 
     <div class="container container--narrow page-section">
         <h2 class="headline headline--small-plus t-center">Past events</h2>

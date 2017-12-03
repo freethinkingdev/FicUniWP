@@ -8,19 +8,10 @@
 
 
 get_header();
-
+add_page_banner_header(array('title'=>'All Events','image'=>'https://i5.walmartimages.com/asr/1382f6ea-f48a-4623-8d7f-077647fd43b8_1.c793ef4d578e69bdf49d987130933451.jpeg?odnBg=FFFFFF'));
 ?>
 
 
-    <div class="page-banner" xmlns="http://www.w3.org/1999/html">
-        <div class="page-banner__bg-image"
-             style="background-image: url(<?php echo get_theme_file_uri() ?>/images/ocean.jpg);"></div>
-        <div class="page-banner__content container container--narrow">
-            <h1 class="page-banner__title"><?php the_archive_title(); ?></h1>
-            <div class="page-banner__intro">
-            </div>
-        </div>
-    </div>
 
     <div class="container container--narrow page-section">
         <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>

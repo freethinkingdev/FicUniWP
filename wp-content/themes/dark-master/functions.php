@@ -7,6 +7,37 @@
  */
 
 
+/*Function that adds page banner image as well as subtext*/
+function add_page_banner_header($page_heading=null) {
+    if (!$page_heading['title']) {
+        $page_heading['title'] = get_the_title();
+    }
+    if (!$page_heading['subtitle']){
+        $page_heading['subtitle']= get_field('page_banner_subtitle');
+    }
+    if (!$page_heading['image']){
+        if (get_field('page_banner_background_image')) {
+            $page_heading['image'] = get_field('page_banner_background_image')['sizes']['page_banner'];
+        } else {
+            $page_heading['image'] = get_theme_file_uri().'/images/ocean.jpg';
+        }
+    }
+
+    ?>
+    <div class="page-banner">
+        <div class="page-banner__bg-image" style="background-image: url(<?php echo $page_heading['image']; ?>"></div>
+        <div class="page-banner__content container container--narrow">
+            <h1 class="page-banner__title"><?php echo $page_heading['title']; ?></h1>
+            <div class="page-banner__intro">
+                <p><?php echo $page_heading['subtitle']; ?></p>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+
+
 add_action('wp_enqueue_scripts', 'uni_files');
 add_action('after_setup_theme', 'uni_features');
 add_action('pre_get_posts', 'uni_events_list');

@@ -8,20 +8,9 @@
 
 
 get_header();
-
+add_page_banner_header(array('title'=>'All Programs','image'=>'http://oxfordstudent.com/wp-content/uploads/2015/05/queens-summer.jpg'))
 ?>
 
-
-    <div class="page-banner" xmlns="http://www.w3.org/1999/html">
-        <div class="page-banner__bg-image"
-             style="background-image: url(<?php echo get_theme_file_uri() ?>/images/ocean.jpg);"></div>
-        <div class="page-banner__content container container--narrow">
-            <h1 class="page-banner__title"><?php the_archive_title(); ?></h1>
-            <div class="page-banner__intro">
-                <p>All programs</p>
-            </div>
-        </div>
-    </div>
 
     <div class="container container--narrow page-section">
         <!--<h2 class="headline headline--small-plus t-center">All programs</h2>-->
