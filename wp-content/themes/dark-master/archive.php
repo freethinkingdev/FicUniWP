@@ -8,7 +8,7 @@
 
 
 get_header();
-add_page_banner_header();
+add_page_banner_header(array('title'=>get_the_archive_title(), 'subtitle'=>get_the_archive_description()));
 ?>
 
 
@@ -16,7 +16,6 @@ add_page_banner_header();
         <?php
         while (have_posts()) {
             the_post();
-
             ?>
             <div class="post-item">
                 <!-- Post title that is also a link-->

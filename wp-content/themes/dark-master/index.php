@@ -7,16 +7,12 @@
  */
 
 get_header();
-add_page_banner_header();
+add_page_banner_header(array('title'=>'From the news...','image'=>'https://onlinelearninginsights.files.wordpress.com/2016/01/news.gif'));
 ?>
-
-
-
     <div class="container container--narrow page-section">
         <?php
         while (have_posts()) {
             the_post();
-
             ?>
             <div class="post-item">
                 <!-- Post title that is also a link-->
@@ -25,7 +21,6 @@ add_page_banner_header();
                     <p>Posted by <?php the_author_posts_link(); ?> on <?php the_time('j M, y'); ?> in <?php echo get_the_category_list(' and '); ?></p>
                 </div>
 
-
                 <div class="generic-content">
                     <?php the_excerpt(); ?>
                     <p><a class="btn btn--gray" href="<?php the_permalink(); ?>">Continue to read &rightarrow;</a> </p>
@@ -33,11 +28,9 @@ add_page_banner_header();
 
             </div>
             <?php
-
         }
 		echo paginate_links();
         ?>
     </div>
-
 <?php
 get_footer();
