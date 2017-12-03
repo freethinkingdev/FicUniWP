@@ -28,6 +28,7 @@ function uni_features()
     add_theme_support('post-thumbnails');
     add_image_size('professor_landscape',200,160,true);
     add_image_size('professor_portrait',160,200,true);
+    add_image_size('page_banner',1500,350,true);
     register_nav_menu('menu_header', 'Header menu location');
     register_nav_menu('menu_footer_left', 'Footer left menu location');
     register_nav_menu('menu_footer_right', 'Footer right menu location');
