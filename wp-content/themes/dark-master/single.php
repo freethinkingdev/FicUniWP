@@ -20,7 +20,12 @@ add_page_banner_header();
                                 Posted by <?php the_author(); ?> on <?php the_time('j M, y'); ?> in <?php echo get_the_category_list(' and '); ?></span></p>
                     </div>
                     <div class="post-item">
-                        <p><?php the_content(); ?></p>
+                        <div class="single_post">
+                            <?php echo '<img src="' . the_post_thumbnail() . '">' ?>
+                        </div>
+                        <div>
+                            <p><?php the_content(); ?></p>
+                        </div>
 
                     </div>
                     <?php } ?>

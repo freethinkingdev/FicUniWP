@@ -2406,3 +2406,9 @@ body.admin-bar .search-overlay {
     background-color: #301ba982;
     width: 160px;
 }
+
+.single_post img {
+
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px;
+}
