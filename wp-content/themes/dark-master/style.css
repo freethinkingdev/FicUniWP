@@ -2412,3 +2412,7 @@ body.admin-bar .search-overlay {
     border-radius: 10px;
     box-shadow: 5px 5px 5px;
 }
+
+.height100px {
+    height: 100px;
+}
