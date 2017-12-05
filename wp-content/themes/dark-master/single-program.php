@@ -83,6 +83,7 @@ add_page_banner_header();
                         ));
                         if ($program_related_professors->have_posts()){
                         ?>
+                        <div class="height100px"></div>
                         <h5>
                             <strong>
                                 Related <?php the_title(); ?> professors:
@@ -105,10 +106,37 @@ add_page_banner_header();
                             <?php }
                             } ?>
                         </ul>
+
                     </div>
                 </div>
+
             <?php } ?>
         </div>
+
+
+        <?php
+        /*RELATED CAMPUS SECTION*/
+        wp_reset_postdata();
+        $related_campus = get_field('related_campus');
+        if($related_campus) {
+            ?>
+
+        <div style="float: left;">
+
+        <h3><?php the_title(); ?> is available at the following campus(es): </h3>
+            <ul>
+                <?php
+                foreach ($related_campus as $campus) {
+                    ?>
+                    <li><h3><a href="<?php echo get_the_permalink($campus); ?>"><?php echo get_the_title($campus); ?></a></h3></li>
+                    <?php
+                }
+                ?>
+            </ul>
+            <?php
+        }
+        ?>
+            </div>
     </div>
 <?php
 get_footer();
