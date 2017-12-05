@@ -96,6 +96,10 @@ function uni_events_list($query)
             'type' => 'numeric'
         ));
 
+    if (!is_admin() and is_post_type_archive('campus') and $query->is_main_query()) {
+        $query->set('post_per_page', -1);
+    }
+
     }
 
 
