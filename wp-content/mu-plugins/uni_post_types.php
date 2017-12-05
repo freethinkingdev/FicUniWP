@@ -41,7 +41,7 @@ function uni_post_types(){
         ),
         'menu_icon' => 'dashicons-location-alt',
         'has_archive' => true,
-        'supports' => array('title','editor'),
+        'supports' => array('title','editor','excerpt'),
         'rewrite' => array('slug'=> 'campuses')
     ));
 
