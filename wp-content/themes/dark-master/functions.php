@@ -8,10 +8,11 @@
 /*Adding font awesome, js file, css and google font*/
 function uni_files()
 {
+    wp_enqueue_script('jquery_code', get_theme_file_uri('/js/jquery-3.2.1.min.js'), NULL, microtime(), true);
     wp_enqueue_script('google_map', '//maps.googleapis.com/maps/api/js?key=AIzaSyB_vLSGsRE9yMwbbKc4jixAs7ck8AiAv70', NULL, '1.0', true);
     wp_enqueue_script('slider_code', get_theme_file_uri('/js/scripts-bundled.js'), NULL, microtime(), true);
-    wp_enqueue_script('jquery_code', get_theme_file_uri('/js/jquery-3.2.1.min.js'), NULL, microtime(), true);
     wp_enqueue_script('google_map_mw', get_theme_file_uri('/js/modules/GoogleMapMW.js'), NULL, microtime(), true);
+    wp_enqueue_script('search_class', get_theme_file_uri('/js/SearchClass.js'), NULL, microtime(), true);
     wp_enqueue_style('google_font', 'https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
     wp_enqueue_style('font_awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
     wp_enqueue_style('uni_main_css', get_stylesheet_uri(), null, microtime(), false);

@@ -12,7 +12,7 @@
 <?php
 wp_footer();
 ?>
-</body>
+
 <footer class="site-footer">
 
     <div class="site-footer__inner container container--narrow">
@@ -20,7 +20,8 @@ wp_footer();
         <div class="group">
 
             <div class="site-footer__col-one">
-                <h1 class="school-logo-text school-logo-text--alt-color"><a href="<?php echo site_url(); ?>"><strong>Fictional</strong> University</a></h1>
+                <h1 class="school-logo-text school-logo-text--alt-color"><a href="<?php echo site_url(); ?>"><strong>Fictional</strong>
+                        University</a></h1>
                 <p><a class="site-footer__link" href="#">555.555.5555</a></p>
             </div>
 
@@ -29,15 +30,15 @@ wp_footer();
                     <h3 class="headline headline--small">Explore</h3>
                     <nav class="nav-list">
                         <?php
-                            wp_nav_menu(array(
-                                'theme_location' => 'menu_footer_left'
-                            ));
+                        wp_nav_menu(array(
+                            'theme_location' => 'menu_footer_left'
+                        ));
                         ?>
                         <!--<ul>
-                            <li><a href="<?php /*echo site_url('about-us'); */?>">About Us</a></li>
-                            <li><a href="<?php /*echo site_url('programs'); */?>">Programs</a></li>
-                            <li><a href="<?php /*echo site_url('events'); */?>">Events</a></li>
-                            <li><a href="<?php /*echo site_url('campuses'); */?>">Campuses</a></li>
+                            <li><a href="<?php /*echo site_url('about-us'); */ ?>">About Us</a></li>
+                            <li><a href="<?php /*echo site_url('programs'); */ ?>">Programs</a></li>
+                            <li><a href="<?php /*echo site_url('events'); */ ?>">Events</a></li>
+                            <li><a href="<?php /*echo site_url('campuses'); */ ?>">Campuses</a></li>
                         </ul>-->
                     </nav>
                 </div>
@@ -46,13 +47,13 @@ wp_footer();
                     <h3 class="headline headline--small">Learn</h3>
                     <nav class="nav-list">
                         <?php
-                            wp_nav_menu(array(
-                                'theme_location' => 'menu_footer_right'
-                            ));
+                        wp_nav_menu(array(
+                            'theme_location' => 'menu_footer_right'
+                        ));
                         ?>
                         <!--<ul>
                             <li><a href="#">Legal</a></li>
-                            <li><a href="<?php /*echo site_url('privacy-policy'); */?>">Privacy</a></li>
+                            <li><a href="<?php /*echo site_url('privacy-policy'); */ ?>">Privacy</a></li>
                             <li><a href="#">Careers</a></li>
                         </ul>-->
                     </nav>
@@ -63,11 +64,16 @@ wp_footer();
                 <h3 class="headline headline--small">Connect With Us</h3>
                 <nav>
                     <ul class="min-list social-icons-list group">
-                        <li><a href="#" class="social-color-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#" class="social-color-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#" class="social-color-youtube"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                        <li><a href="#" class="social-color-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#" class="social-color-instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#" class="social-color-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        </li>
+                        <li><a href="#" class="social-color-twitter"><i class="fa fa-twitter"
+                                                                        aria-hidden="true"></i></a></li>
+                        <li><a href="#" class="social-color-youtube"><i class="fa fa-youtube"
+                                                                        aria-hidden="true"></i></a></li>
+                        <li><a href="#" class="social-color-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </li>
+                        <li><a href="#" class="social-color-instagram"><i class="fa fa-instagram"
+                                                                          aria-hidden="true"></i></a></li>
                     </ul>
                 </nav>
             </div>
@@ -75,4 +81,12 @@ wp_footer();
 
     </div>
 </footer>
+    <div class="search-overlay">
+        <div class="search-overlay__top">
+            <div class="container">
+                <i class="fa fa-search fa-3x" aria-hidden="true"></i> <input type="text" class="search-term" placeholder="you are searching for.." id="search-term"> <span class="close_button"><i class="fa fa-times-circle fa-3x" aria-hidden="true"></i></span>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
