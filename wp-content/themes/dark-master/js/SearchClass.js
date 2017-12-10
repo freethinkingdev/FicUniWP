@@ -10,7 +10,9 @@ class Search {
         this.search_button = $('.js-search-trigger');
         this.close_button = $('.close_button');
         this.search_overlay = $('.search-overlay');
+        this.search_term_input = $('#search-term');
         this.searchBox = false;
+        this.typing_timer = null;
         this.event();
     }
 
@@ -19,6 +21,19 @@ class Search {
         this.search_button.on("click", this.open_search_window.bind(this));
         this.close_button.on("click", this.close_search_window.bind(this));
         $(document).on('keydown',this.keyboard_key_listener_open_close_search_window.bind(this).bind(event));
+        this.search_term_input.on('keydown',this.search_term_input_focus.bind(this));
+
+
+    }
+
+
+    /*Method testing whether input window has the focus*/
+    search_term_input_focus(){
+       clearTimeout(this.typing_timer);
+       this.typing_timer = setTimeout(function(){
+           console.log(this.name);
+           console.log('2');
+        },2000)
     }
 
     /*Method that allows to open or close search div with the keyboard*/
