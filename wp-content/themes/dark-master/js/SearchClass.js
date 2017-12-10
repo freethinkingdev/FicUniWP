@@ -13,7 +13,7 @@ class Search {
         this.search_overlay = $('.search-overlay');
         this.search_term_input = $('#search-term');
         this.search_results_div = $('#search_results_div');
-        this.searchBox = false;
+        this.search_box = false;
         this.typing_timer = null;
         this.event();
     }
@@ -51,12 +51,12 @@ class Search {
         /*Checking which button has be pressed*/
         switch (key_code) {
             case 83:
-                if (!this.searchBox) {
+                if (!this.search_box) {
                     this.open_search_window();
                 }
                 break;
             case 27:
-                if (this.searchBox) {
+                if (this.search_box) {
                     this.close_search_window();
                 }
                 break;
@@ -69,14 +69,14 @@ class Search {
     open_search_window() {
         this.search_overlay.addClass("search-overlay--active");
         $('body').addClass('body-no-scroll');
-        this.searchBox = true;
+        this.search_box = true;
     }
 
     /*Method that hides search window*/
     close_search_window() {
         this.search_overlay.removeClass('search-overlay--active');
         $('body').removeClass('body-no-scroll');
-        this.searchBox = false;
+        this.search_box = false;
     }
 
 }
