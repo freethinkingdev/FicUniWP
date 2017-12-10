@@ -4,7 +4,7 @@
 
 window.jQuery = $;
 class Search {
-    
+
     /*Constructor - describing and object initiation*/
     constructor() {
 
@@ -13,8 +13,10 @@ class Search {
         this.search_overlay = $('.search-overlay');
         this.search_term_input = $('#search-term');
         this.search_results_div = $('#search_results_div');
+        this.searched_term = '';
         this.search_box = false;
         this.typing_timer = null;
+        this.spinning_wheel = false;
         this.event();
     }
 
@@ -23,24 +25,41 @@ class Search {
         this.search_button.on("click", this.open_search_window.bind(this));
         this.close_button.on("click", this.close_search_window.bind(this));
         $(document).on('keydown', this.keyboard_key_listener_open_close_search_window.bind(this).bind(event));
-        this.search_term_input.on('keydown', this.search_term_input_focus.bind(this));
+        this.search_term_input.on('keyup', this.search_term_input_focus.bind(this));
     }
 
     /*Method testing whether input window has the focus*/
     search_term_input_focus() {
-        clearTimeout(this.typing_timer);
-        this.display_spinning_wheel_to_the_user();
-        this.typing_timer = setTimeout(this.display_search_results_to_the_user.bind(this), 2000)
+        if (this.search_term_input.val() != this.searched_term) {
+            clearTimeout(this.typing_timer);
+            this.display_spinning_wheel_to_the_user();
+            if(this.search_term_input.val()){
+                this.typing_timer = setTimeout(this.display_search_results_to_the_user.bind(this), 2000);
+            }
+        }
+        this.searched_term = this.search_term_input.val();
     }
 
     /*Method that outputs data to the search div*/
     display_search_results_to_the_user() {
+        this.spinning_wheel=false;
         this.search_results_div.html("<h4>This is new method</h4>");
     }
 
     /*Method that show intermittent content to the user*/
     display_spinning_wheel_to_the_user() {
-        this.search_results_div.html("<div class='spinner-loader'></div>");
+        /*Check to see if the search input is empty*/
+        if (this.search_term_input.val()) {
+            if(!this.spinning_wheel){
+                this.search_results_div.html("<div class='spinner-loader'></div>");
+                this.spinning_wheel = true;
+            }
+        } else {
+            this.search_results_div.html('');
+            this.spinning_wheel = false;
+        }
+
+
     }
 
     /*Method that allows to open or close search div with the keyboard*/
@@ -51,7 +70,7 @@ class Search {
         /*Checking which button has be pressed*/
         switch (key_code) {
             case 83:
-                if (!this.search_box) {
+                if (!this.search_box && !$('input, textarea').is(':focus')) {
                     this.open_search_window();
                 }
                 break;
