@@ -43,7 +43,7 @@ class Search {
     /*Method that outputs data to the search div*/
     display_search_results_to_the_user() {
         /*Getting json from the wp. Using arrow function*/
-        $.getJSON('http://localhost/dashboard/FicUni/wp-json/wp/v2/posts?search=' + this.search_term_input.val(), results => {
+        $.getJSON(data_for_js_public.site_root_url+'/wp-json/wp/v2/posts?search=' + this.search_term_input.val(), results => {
             /*Changing html of an element*/
             this.search_results_div.html(`
             ${results.length ? '<h2>Results:</h2><ul>' : '<div><h2>No results were found</h2></div>'}
@@ -52,6 +52,7 @@ class Search {
             }).join('')}             
             ${results.length ? '</ul>' : '<p>Please search for something else.</p>'}
             `);
+            this.spinning_wheel = false;
         });
     }
 
