@@ -81,17 +81,6 @@ wp_footer();
 
     </div>
 </footer>
-    <div class="search-overlay">
-        <div class="search-overlay__top">
-            <div class="container">
-                <i class="fa fa-search fa-3x" aria-hidden="true"></i> <input type="text" class="search-term" placeholder="you are searching for.." id="search-term"> <span class="close_button"><i class="fa fa-times-circle fa-3x" aria-hidden="true"></i></span>
-            </div>
-        </div>
-        <div class="container">
-            <div id="search_results_div">
 
-            </div>
-        </div>
-    </div>
 </body>
 </html>

@@ -7,7 +7,7 @@ class Search {
 
     /*Constructor - describing and object initiation*/
     constructor() {
-
+        this.html_search_overaly();
         this.search_button = $('.js-search-trigger');
         this.close_button = $('.close_button');
         this.search_overlay = $('.search-overlay');
@@ -18,6 +18,7 @@ class Search {
         this.typing_timer = null;
         this.spinning_wheel = false;
         this.event();
+
     }
 
     /*Event listing*/
@@ -34,7 +35,7 @@ class Search {
             clearTimeout(this.typing_timer);
             this.display_spinning_wheel_to_the_user();
             if (this.search_term_input.val()) {
-                this.typing_timer = setTimeout(this.display_search_results_to_the_user.bind(this), 1000);
+                this.typing_timer = setTimeout(this.display_search_results_to_the_user.bind(this), 300);
             }
         }
         this.searched_term = this.search_term_input.val();
@@ -108,6 +109,23 @@ class Search {
         this.search_box = false;
     }
 
+    /*Method that adds search overlay to the bottom of the page*/
+    html_search_overaly(){
+        $('body').append(`
+            <div class="search-overlay">
+        <div class="search-overlay__top">
+            <div class="container">
+                <i class="fa fa-search fa-3x" aria-hidden="true"></i> <input type="text" class="search-term" placeholder="you are searching for.." id="search-term"> <span class="close_button"><i class="fa fa-times-circle fa-3x" aria-hidden="true"></i></span>
+            </div>
+        </div>
+        <div class="container">
+            <div id="search_results_div">
+
+            </div>
+        </div>
+    </div>
+        `);
+    }
 }
 
 
