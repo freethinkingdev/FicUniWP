@@ -46,23 +46,13 @@ class Search {
         $.getJSON('http://localhost/dashboard/FicUni/wp-json/wp/v2/posts?search=' + this.search_term_input.val(), results => {
             /*Changing html of an element*/
             this.search_results_div.html(`
-            <h2>Results:</h2>
-            <ul>
-            <!--Map function that will do action on an array element-->
-                ${results.map(result => {
-                    return `<li>
-                    <a href="${result.link}">${result.title.rendered}</a>
-                </li>`
-                }
-            ).join('')}
-                
-            </ul>
+            ${results.length ? '<h2>Results:</h2><ul>' : '<div><h2>No results were found</h2></div>'}
+            ${/*Map function that will do action on an array element*/results.map(result => {
+                return `<li><a href="${result.link}">${result.title.rendered}</a></li>`
+            }).join('')}             
+            ${results.length ? '</ul>' : '<p>Please search for something else.</p>'}
             `);
-            //alert(results[0].title.rendered);
         });
-
-        /*this.spinning_wheel=false;
-         this.search_results_div.html("<h4>This is new method</h4>");*/
     }
 
     /*Method that show intermittent content to the user*/
