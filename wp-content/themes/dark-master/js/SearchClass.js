@@ -33,8 +33,8 @@ class Search {
         if (this.search_term_input.val() != this.searched_term) {
             clearTimeout(this.typing_timer);
             this.display_spinning_wheel_to_the_user();
-            if(this.search_term_input.val()){
-                this.typing_timer = setTimeout(this.display_search_results_to_the_user.bind(this), 2000);
+            if (this.search_term_input.val()) {
+                this.typing_timer = setTimeout(this.display_search_results_to_the_user.bind(this), 1000);
             }
         }
         this.searched_term = this.search_term_input.val();
@@ -42,15 +42,34 @@ class Search {
 
     /*Method that outputs data to the search div*/
     display_search_results_to_the_user() {
-        this.spinning_wheel=false;
-        this.search_results_div.html("<h4>This is new method</h4>");
+        /*Getting json from the wp. Using arrow function*/
+        $.getJSON('http://localhost/dashboard/FicUni/wp-json/wp/v2/posts?search=' + this.search_term_input.val(), results => {
+            /*Changing html of an element*/
+            this.search_results_div.html(`
+            <h2>Results:</h2>
+            <ul>
+            <!--Map function that will do action on an array element-->
+                ${results.map(result => {
+                    return `<li>
+                    <a href="${result.link}">${result.title.rendered}</a>
+                </li>`
+                }
+            ).join('')}
+                
+            </ul>
+            `);
+            //alert(results[0].title.rendered);
+        });
+
+        /*this.spinning_wheel=false;
+         this.search_results_div.html("<h4>This is new method</h4>");*/
     }
 
     /*Method that show intermittent content to the user*/
     display_spinning_wheel_to_the_user() {
         /*Check to see if the search input is empty*/
         if (this.search_term_input.val()) {
-            if(!this.spinning_wheel){
+            if (!this.spinning_wheel) {
                 this.search_results_div.html("<div class='spinner-loader'></div>");
                 this.spinning_wheel = true;
             }
