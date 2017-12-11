@@ -100,6 +100,9 @@ class Search {
         this.search_overlay.addClass("search-overlay--active");
         $('body').addClass('body-no-scroll');
         this.search_box = true;
+        setTimeout(() => {
+            this.search_term_input.focus();
+        },500);
     }
 
     /*Method that hides search window*/
@@ -107,6 +110,7 @@ class Search {
         this.search_overlay.removeClass('search-overlay--active');
         $('body').removeClass('body-no-scroll');
         this.search_box = false;
+        this.search_term_input.val('');
     }
 
     /*Method that adds search overlay to the bottom of the page*/
