@@ -35,7 +35,7 @@ class Search {
             clearTimeout(this.typing_timer);
             this.display_spinning_wheel_to_the_user();
             if (this.search_term_input.val()) {
-                this.typing_timer = setTimeout(this.display_search_results_to_the_user.bind(this), 300);
+                this.typing_timer = setTimeout(this.display_search_results_to_the_user.bind(this), 500);
             }
         }
         this.searched_term = this.search_term_input.val();
@@ -43,17 +43,28 @@ class Search {
 
     /*Method that outputs data to the search div*/
     display_search_results_to_the_user() {
-        /*Getting json from the wp. Using arrow function*/
-        $.getJSON(data_for_js_public.site_root_url+'/wp-json/wp/v2/posts?search=' + this.search_term_input.val(), results => {
+        /*Getting multiple json data from the wp site. And stating what should happen after request are complete with then method*/
+        $.when(
+            /*Stating json request
+             * data_for_js_public.site_root_url object has been created in functions.php file
+             * */
+            $.getJSON(data_for_js_public.site_root_url + '/wp-json/wp/v2/posts?search=' + this.search_term_input.val()),
+            $.getJSON(data_for_js_public.site_root_url + '/wp-json/wp/v2/pages?search=' + this.search_term_input.val())
+        ).then((post_results, page_results) => {
+            /*Creating major array with the data from the requests. Since returned information contains info about request itself we have
+             * work with [0] element*/
+            var final_results = post_results[0].concat(page_results[0]);
             /*Changing html of an element*/
             this.search_results_div.html(`
-            ${results.length ? '<h2>Results:</h2><ul>' : '<div><h2>No results were found</h2></div>'}
-            ${/*Map function that will do action on an array element*/results.map(result => {
+            ${final_results.length ? '<h2>Results:</h2><ul>' : '<div><h2>No results were found</h2></div>'}
+            ${/*Map function that will do action on an array element*/final_results.map(result => {
                 return `<li><a href="${result.link}">${result.title.rendered}</a></li>`
             }).join('')}             
-            ${results.length ? '</ul>' : '<p>Please search for something else.</p>'}
+            ${final_results.length ? '</ul>' : '<p>Please search for something else.</p>'}
             `);
             this.spinning_wheel = false;
+        }, () => {
+            this.search_results_div.html('<div><h2>An unexpected error occurred.Please try again later.</h2></div>');
         });
     }
 
@@ -102,7 +113,7 @@ class Search {
         this.search_box = true;
         setTimeout(() => {
             this.search_term_input.focus();
-        },500);
+        }, 500);
     }
 
     /*Method that hides search window*/
@@ -114,7 +125,7 @@ class Search {
     }
 
     /*Method that adds search overlay to the bottom of the page*/
-    html_search_overaly(){
+    html_search_overaly() {
         $('body').append(`
             <div class="search-overlay">
         <div class="search-overlay__top">
