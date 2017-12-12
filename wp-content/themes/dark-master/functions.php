@@ -55,6 +55,7 @@ function add_page_banner_header($page_heading=null) {
 add_action('wp_enqueue_scripts', 'uni_files');
 add_action('after_setup_theme', 'uni_features');
 add_action('pre_get_posts', 'uni_events_list');
+add_action('rest_api_init', 'uni_custom_api_data');
 
 /*Adding google api to the Advanced Custom Fields*/
 add_filter('acf/fields/google_map/api','acf_google_api');
@@ -63,7 +64,12 @@ function acf_google_api($api_key){
     return $api_key;
 }
 
-
+/*Adding custom field to the rest json respond from wp*/
+function uni_custom_api_data() {
+    register_rest_field('post','author_name', array('get_callback' => function(){
+        return get_the_author();
+    }));
+}
 
 
 /*Adding menus to the site*/

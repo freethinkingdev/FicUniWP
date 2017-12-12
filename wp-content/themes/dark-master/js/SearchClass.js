@@ -51,14 +51,14 @@ class Search {
             $.getJSON(data_for_js_public.site_root_url + '/wp-json/wp/v2/posts?search=' + this.search_term_input.val()),
             $.getJSON(data_for_js_public.site_root_url + '/wp-json/wp/v2/pages?search=' + this.search_term_input.val())
         ).then((post_results, page_results) => {
-            /*Creating major array with the data from the requests. Since returned information contains info about request itself we have
+            /*Creating fumajor array with the data from the requests. Since returned information contains info about request itself we have
              * work with [0] element*/
             var final_results = post_results[0].concat(page_results[0]);
             /*Changing html of an element*/
             this.search_results_div.html(`
             ${final_results.length ? '<h2>Results:</h2><ul>' : '<div><h2>No results were found</h2></div>'}
             ${/*Map function that will do action on an array element*/final_results.map(result => {
-                return `<li><a href="${result.link}">${result.title.rendered}</a></li>`
+                return `<li><a href="${result.link}">${result.title.rendered}</a> ${result.type == 'post'?`<small><em>By: ${result.author_name}</em></small>`:''} </li>`
             }).join('')}             
             ${final_results.length ? '</ul>' : '<p>Please search for something else.</p>'}
             `);
