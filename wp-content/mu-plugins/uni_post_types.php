@@ -24,7 +24,8 @@ function uni_post_types(){
         'menu_icon' => 'dashicons-calendar-alt',
         'has_archive' => true,
         'rewrite' => array('slug'=>'events'),
-        'supports' => array('title','editor','author','thumbnail','excerpt','trackbacks', 'revisions','post-formats')
+        'supports' => array('title','editor','author','thumbnail','excerpt','trackbacks', 'revisions','post-formats'),
+        'show_in_rest' => true
     ));
 
     /*Adding new campus custom post type*/
@@ -42,7 +43,8 @@ function uni_post_types(){
         'menu_icon' => 'dashicons-location-alt',
         'has_archive' => true,
         'supports' => array('title','editor','excerpt'),
-        'rewrite' => array('slug'=> 'campuses')
+        'rewrite' => array('slug'=> 'campuses'),
+        'show_in_rest' => true
     ));
 
     /*Registering new program custom post type*/
@@ -60,7 +62,8 @@ function uni_post_types(){
         'menu_icon' => 'dashicons-awards',
         'has_archive' => true,
         'supports' => array('title','editor'),
-        'rewrite' => array('slug'=> 'programs')
+        'rewrite' => array('slug'=> 'programs'),
+        'show_in_rest' => true
     ));
 
     /*Registering new custom post type called professor*/
@@ -76,7 +79,8 @@ function uni_post_types(){
             'singular_name' => 'Professor'
         ),
         'menu_icon' => 'dashicons-welcome-learn-more',
-        'supports' => array('title','editor','thumbnail')
+        'supports' => array('title','editor','thumbnail'),
+        'show_in_rest' => true
     ));
 
 
