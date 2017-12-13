@@ -9,7 +9,7 @@
 get_header();
 add_page_banner_header(array(
     'title'=>'404',
-    'subtitle'=>'h no, you’ve found our junior developer’s homepage!
+    'subtitle'=>'Oh no, you’ve found our junior developer’s homepage!
 Despite sleeping on the couch most of the day, our junior web developer still finds time to do some coding…',
     'image'=>'https://laughingsquid.com/wp-content/uploads/2014/01/aav8ay1c4to.jpg'
 ));
