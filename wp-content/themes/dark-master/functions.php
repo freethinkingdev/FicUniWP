@@ -5,6 +5,16 @@
  * Date: 27/11/2017
  * Time: 15:41
  */
+
+require get_theme_file_path('/inc/search_route.php');
+
+
+
+add_action('wp_enqueue_scripts', 'uni_files');
+add_action('after_setup_theme', 'uni_features');
+add_action('pre_get_posts', 'uni_events_list');
+add_action('rest_api_init', 'uni_custom_api_data');
+
 /*Adding font awesome, js file, css and google font*/
 function uni_files()
 {
@@ -52,10 +62,6 @@ function add_page_banner_header($page_heading=null) {
 
 
 
-add_action('wp_enqueue_scripts', 'uni_files');
-add_action('after_setup_theme', 'uni_features');
-add_action('pre_get_posts', 'uni_events_list');
-add_action('rest_api_init', 'uni_custom_api_data');
 
 /*Adding google api to the Advanced Custom Fields*/
 add_filter('acf/fields/google_map/api','acf_google_api');
