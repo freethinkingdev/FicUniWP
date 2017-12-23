@@ -44,28 +44,69 @@ class Search {
     /*Method that outputs data to the search div*/
     display_search_results_to_the_user() {
         /*Getting multiple json data from the wp site. And stating what should happen after request are complete with then method*/
-        $.when(
-            /*Stating json request
-             * data_for_js_public.site_root_url object has been created in functions.php file
-             * */
-            $.getJSON(data_for_js_public.site_root_url + '/wp-json/wp/v2/posts?search=' + this.search_term_input.val()),
-            $.getJSON(data_for_js_public.site_root_url + '/wp-json/wp/v2/pages?search=' + this.search_term_input.val())
-        ).then((post_results, page_results) => {
-            /*Creating fumajor array with the data from the requests. Since returned information contains info about request itself we have
-             * work with [0] element*/
-            var final_results = post_results[0].concat(page_results[0]);
-            /*Changing html of an element*/
+
+        $.getJSON(data_for_js_public.site_root_url + '/wp-json/uni/v1/search?q=' + this.search_term_input.val(), (json_data) => {
             this.search_results_div.html(`
-            ${final_results.length ? '<h2>Results:</h2><ul>' : '<div><h2>No results were found</h2></div>'}
-            ${/*Map function that will do action on an array element*/final_results.map(result => {
-                return `<li><a href="${result.link}">${result.title.rendered}</a> ${result.type == 'post'?`<small><em>By: ${result.author_name}</em></small>`:''} </li>`
-            }).join('')}             
-            ${final_results.length ? '</ul>' : '<p>Please search for something else.</p>'}
+                <div class="row">
+                    <div class="one-third">
+                        <h3>Posts:</h3>
+                        ${json_data.post.length ? '<ul>' : '<div><h2>No results were found</h2></div>'}
+                        ${/*Map function that will do action on an array element*/ json_data.post.map(result => {
+                return `<li><a href="${result.permalink}">${result.title}</a> ${result.type == 'post' ? `<small><em>By: ${result.author_name}</em>Type: ${result}</small>` : ''} </li>`
+                }).join('')}
+                        ${json_data.post.length ? '</ul>' : '<p>Please search for something else.</p>'}
+                    </div>
+                    
+                    
+                    <div class="one-third">
+                        <h3>Programs: </h3>
+                         ${json_data.program.length ? '<ul>' : '<div><h2>No results were found</h2></div>'}
+                        ${/*Map function that will do action on an array element*/ json_data.program.map(result => {
+                return `<li><a href="${result.permalink}">${result.title}</a> ${result.type == 'post' ? `<small><em>By: ${result.author_name}</em>Type: ${result}</small>` : ''} </li>`
+            }).join('')}
+                        ${json_data.program.length ? '</ul>' : '<p>Please search for something else.</p>'}
+                    </div>
+                    
+                    
+                    
+                    <div class="one-third">
+                    <h3>Events:</h3>
+                    ${json_data.event.length ? '<ul>' : '<div><h2>No results were found</h2></div>'}
+                        ${/*Map function that will do action on an array element*/ json_data.event.map(result => {
+                return `<li><a href="${result.permalink}">${result.title}</a> ${result.type == 'post' ? `<small><em>By: ${result.author_name}</em>Type: ${result}</small>` : ''} </li>`
+            }).join('')}
+                        ${json_data.event.length ? '</ul>' : '<p>Please search for something else.</p>'}
+                    </div>
+                </div>
             `);
             this.spinning_wheel = false;
         }, () => {
             this.search_results_div.html('<div><h2>An unexpected error occurred.Please try again later.</h2></div>');
         });
+
+        /*OLD METHOD DELETE IT*/
+        /*$.when(
+         /!*
+         * Stating json request data_for_js_public.site_root_url object has been created in functions.php file
+         *!/
+         $.getJSON(data_for_js_public.site_root_url + '/wp-json/wp/v2/posts?search=' + this.search_term_input.val()),
+         $.getJSON(data_for_js_public.site_root_url + '/wp-json/wp/v2/pages?search=' + this.search_term_input.val())
+         ).then((post_results, page_results) => {
+         /!*Creating major array with the data from the requests. Since returned information contains info about request itself we have
+         * work with [0] element*!/
+         var final_results = post_results[0].concat(page_results[0]);
+         /!*Changing html of an element*!/
+         this.search_results_div.html(`
+         ${final_results.length ? '<h2>Results:</h2><ul>' : '<div><h2>No results were found</h2></div>'}
+         ${/!*Map function that will do action on an array element*!/final_results.map(result => {
+         return `<li><a href="${result.link}">${result.title.rendered}</a> ${result.type == 'post' ? `<small><em>By: ${result.author_name}</em>Type: ${result}</small>` : ''} </li>`
+         }).join('')}
+         ${final_results.length ? '</ul>' : '<p>Please search for something else.</p>'}
+         `);
+         this.spinning_wheel = false;
+         }, () => {
+         this.search_results_div.html('<div><h2>An unexpected error occurred.Please try again later.</h2></div>');
+         });*/
     }
 
     /*Method that show intermittent content to the user*/
