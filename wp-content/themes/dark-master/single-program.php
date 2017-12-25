@@ -90,19 +90,21 @@ add_page_banner_header();
                             </strong>
                             <hr>
                         </h5>
-                        <ul>
+                        <ul class="professor-cards">
                             <?php
                             while ($program_related_professors->have_posts()) {
                                 $program_related_professors->the_post();
                                 ?>
-                                <li>
+                                <li class="professor-card__list-item">
                                     <div>
-                                        <div class="prof_related"><a href="<?php echo the_permalink(); ?>">
+                                        <div class="prof_related">
+                                            <a class="professor-card" href="<?php echo the_permalink(); ?>">
                                                 <div
-                                                    class="prof_image"> <?php the_post_thumbnail('professor_portrait'); ?></div>
-                                                <div class="prof_name"><?php the_title(); ?></div></div>
+                                                    class="professor-card__image"> <?php the_post_thumbnail('professor_portrait'); ?></div>
+                                                <div class="professor-card__name"><?php the_title(); ?></div></div>
                                     </div>
-                                    </a></li>
+                                    </a>
+                                </li>
                             <?php }
                             } ?>
                         </ul>
@@ -118,25 +120,27 @@ add_page_banner_header();
         /*RELATED CAMPUS SECTION*/
         wp_reset_postdata();
         $related_campus = get_field('related_campus');
-        if($related_campus) {
-            ?>
+        if ($related_campus) {
+        ?>
 
         <div style="float: left;">
 
-        <h3><?php the_title(); ?> is available at the following campus(es): </h3>
+            <h3><?php the_title(); ?> is available at the following campus(es): </h3>
             <ul>
                 <?php
                 foreach ($related_campus as $campus) {
                     ?>
-                    <li><h3><a href="<?php echo get_the_permalink($campus); ?>"><?php echo get_the_title($campus); ?></a></h3></li>
+                    <li><h3>
+                            <a href="<?php echo get_the_permalink($campus); ?>"><?php echo get_the_title($campus); ?></a>
+                        </h3></li>
                     <?php
                 }
                 ?>
             </ul>
             <?php
-        }
-        ?>
-            </div>
+            }
+            ?>
+        </div>
     </div>
 <?php
 get_footer();
