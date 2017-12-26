@@ -106,6 +106,41 @@ function uni_search_returned_results($searched_item)
                 break;
         }
     }
+
+    /*Creating custom query that look for related professor from within related programs*/
+    $related_professor_custom_query = new WP_Query(array(
+        /*What we are looking for*/
+        'post_type' => 'professor',
+        /*Since we look in custom fields we use meta query*/
+        'meta_query' => array(
+            array(
+                /*Name of the advanced custom filed we want to look within*/
+                'key' => 'related_programs',
+                /*Way of comparing. LIKE represents SQL operator*/
+                'compare' => 'LIKE',
+                /*Value we look for*/
+                'value' => '"149"'
+            )
+        )
+    ));
+    /*We are using while loop to look through the posts*/
+    while ($related_professor_custom_query->have_posts()) {
+        /*Setting up loop counter*/
+        $related_professor_custom_query->the_post();
+        /*Populating professors array*/
+//        if(get_post_type() == 'professor'){
+            array_push($results_data_array['professor'], array(
+                'id' => get_the_ID(),
+                'title' => get_the_title(),
+                'permalink' => get_the_permalink(),
+                'author_name' => get_the_author(),
+                'type' => get_post_type(),
+                'image' => get_the_post_thumbnail(0, 'professor_portrait')
+            ));
+//        }
+    }
+    /*Removing duplicated from the array*/
+    $results_data_array['professor'] = array_values(array_unique($results_data_array['professor'], SORT_REGULAR));
     /*Returning the array*/
     return $results_data_array;
 }
