@@ -52,8 +52,8 @@ class Search {
                         <h3>Posts:</h3>
                         ${json_data.post.length ? '<ul>' : '<div><h2>No results were found</h2></div>'}
                         ${/*Map function that will do action on an array element*/ json_data.post.map(result => {
-                return `<li><a href="${result.permalink}">${result.title}</a> ${result.type == 'post' ? `<small><em>By: ${result.author_name}</em>Type: ${result}</small>` : ''} </li>`
-                }).join('')}
+                return `<li><a href="${result.permalink}">${result.title}</a> ${result.type == 'post' ? `<small><em>By: ${result.author_name}</em></small>` : ''} </li>`
+            }).join('')}
                         ${json_data.post.length ? '</ul>' : '<p>Please search for something else.</p>'}
                     </div>
                     
@@ -62,9 +62,28 @@ class Search {
                         <h3>Programs: </h3>
                          ${json_data.program.length ? '<ul>' : '<div><h2>No results were found</h2></div>'}
                         ${/*Map function that will do action on an array element*/ json_data.program.map(result => {
-                return `<li><a href="${result.permalink}">${result.title}</a> ${result.type == 'post' ? `<small><em>By: ${result.author_name}</em>Type: ${result}</small>` : ''} </li>`
+                return `<li><a href="${result.permalink}">${result.title}</a></li>`
             }).join('')}
                         ${json_data.program.length ? '</ul>' : '<p>Please search for something else.</p>'}
+                    <h3>Professors:</h3>
+                        <div class="professors_ul_cards">
+                    ${json_data.professor.length ? '<ul class="professor-cards">' : '<div><h2>No results were found</h2></div>'}
+                        ${/*Map function that will do action on an array element*/ json_data.professor.map(result => {
+                return `
+                    <li class="professor-card__list-item">
+                        
+                            <div class="prof_related">
+                        <a class="professor-card" href="${result.permalink}">
+                                    <div
+                                        class="professor-card__image">${result.image}</div>
+                                    <div class="professor-card__name">${result.title}</div></div>
+                        </a>
+                    </li>`
+            }).join('')}
+                        ${json_data.professor.length ? '</ul>' : '<p>Please search for something else.</p>'}
+                        </div>
+                    
+                    
                     </div>
                     
                     
@@ -73,9 +92,23 @@ class Search {
                     <h3>Events:</h3>
                     ${json_data.event.length ? '<ul>' : '<div><h2>No results were found</h2></div>'}
                         ${/*Map function that will do action on an array element*/ json_data.event.map(result => {
-                return `<li><a href="${result.permalink}">${result.title}</a> ${result.type == 'post' ? `<small><em>By: ${result.author_name}</em>Type: ${result}</small>` : ''} </li>`
+                return `
+<div class="event-summary">
+    <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
+        <span class="event-summary__month">${result.month}</span>
+        <span class="event-summary__day">${result.day}</span>
+    </a>
+    <div class="event-summary__content">
+        <h5 class="event-summary__title headline headline--tiny"><a
+                href="${result.permalink}">${result.title}</a></h5>
+        <p>${result.excerpt} <a href="${result.permalink}" class="nu gray">Learn more &raquo;</a></p>
+    </div>
+</div>`
             }).join('')}
                         ${json_data.event.length ? '</ul>' : '<p>Please search for something else.</p>'}
+                        
+                        
+                        
                     </div>
                 </div>
             `);
